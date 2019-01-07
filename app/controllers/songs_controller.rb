@@ -12,10 +12,9 @@ class SongsController < ApplicationController
   end
 
   def show
-    binding.pry
     @song = Song.find(params[:id])  
-    if params[:artist_id]
-     Song.find(params[:id])
+    if params[:artist_id] && !@song
+     redirect_to artist_songs_path(params[:artist_id])
     end
     #  flash[:alert] = "Artist not found"
     #  artist_songs_path(artist_id)
